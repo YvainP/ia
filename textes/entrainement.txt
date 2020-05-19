@@ -1,0 +1,7 @@
+Un réseau neuronal en informatique est un reproduction artificielle d'un réseau neuronal biologique.
+Avant d'entrainer un réseau neuronal il faut le créer, Pytorch permet de facilement en créer un.
+Un réseau neuronal en informatique est un ensemble de neurone. 
+Un neurone est une fonction mathématique dont le but est basique, il traite la/les donnée(s) d'entrée et passe le résultat au prochain.
+Chaque neurone est lié à dautres via des connexions.
+Ce qui fait la force d'un réseau est sa complexité, elle varie selon le nombre de neurones que le réseau intègre.
+Un réseau neuronal profond comporte un nombre plus important de neurones par rapport à un réseau basique. Cela permet de d'approfondir et d'améliorer ses recherches et actions.
