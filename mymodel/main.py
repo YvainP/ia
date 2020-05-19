@@ -1,8 +1,11 @@
 #Load and normalize CIFAR10
-#CIFAR10 is un panel de nombreuses images de 32x32 chacune répertoriée dans une classe parmi les 10.
+#CIFAR10 est un panel de nombreuses images de 32x32 chacune repertoriee dans une classe parmi les 10
 import torch
 import torchvision
 import torchvision.transforms as transforms
+from pylab import *
+import matplotlib.pyplot as plt
+import numpy as np
 
 transform = transforms.Compose(
         [transforms.ToTensor(),
@@ -48,6 +51,14 @@ class Net(nn.Module):
 
 net = Net()
 
+#affiche une image
+def imshow(img):
+    img = img / 2 + 0.5     # unnormalize
+    npimg = img.numpy()
+    plt.imshow(np.transpose(npimg, (1, 2, 0)))
+    plt.show()
+
+
 #Definition of a loss function and optimizer
 import torch.optim as optim
 
@@ -76,7 +87,7 @@ for epoch in range(2):
 
 print('Finished Training')
 
-#sauvegarde du model créé
+#sauvegarde du model cree
 PATH = './cifar_net.pth'
 torch.save(net.state_dict(), PATH)
 
