@@ -1,5 +1,3 @@
-#Load and normalize CIFAR10
-#CIFAR10 est un panel de nombreuses images de 32x32 chacune repertoriee dans une classe parmi les 10
 import torch
 import torchvision
 import torchvision.transforms as transforms
@@ -10,6 +8,7 @@ import torch.nn as nn
 import torch.nn.functional as F
 import torch.optim as optim
 
+#Load and normalize CIFAR10
 transform = transforms.Compose(
         [transforms.ToTensor(),
             transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))])
@@ -27,7 +26,7 @@ testloader = torch.utils.data.DataLoader(testset, batch_size=4,
 classes = ('plane', 'car', 'bird', 'cat',
         'deer', 'dog', 'frog', 'horse', 'ship', 'truck')
 
-#Definition of a convolutional neural network
+#Creation dun reseau neuronal profond 
 class Net(nn.Module):
     def __init__(self):
         super(Net, self).__init__()
@@ -51,13 +50,13 @@ net = Net()
 
 #affiche une image
 def imshow(img):
-    img = img / 2 + 0.5     # unnormalize
+    img = img / 2 + 0.5  
     npimg = img.numpy()
     plt.imshow(np.transpose(npimg, (1, 2, 0)))
     plt.show()
 
 
-#Definition of a loss function and optimizer
+#Journal de performances + optimisateur 
 criterion = nn.CrossEntropyLoss()
 optimizer = optim.SGD(net.parameters(), lr=0.001, momentum=0.9)
 
@@ -83,8 +82,8 @@ for epoch in range(2):
 
 print('Finished Training')
 
-#sauvegarde du model cree
-PATH = './cifar_net.pth'
+#sauvegarde du modele cree
+PATH = 'model.pth'
 torch.save(net.state_dict(), PATH)
 
 dataiter = iter(testloader)
@@ -94,6 +93,7 @@ images, labels = dataiter.next()
 net = Net()
 net.load_state_dict(torch.load(PATH))
 
+#précision sur le panel complet d'images
 correct = 0
 total = 0
 with torch.no_grad():
