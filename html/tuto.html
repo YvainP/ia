@@ -12,42 +12,63 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
 .w3-bar,h1,button {font-family: "Montserrat", sans-serif}
 body {font-size: 20px;}
 img {
-  margin-top: 10px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+.bigTitle {
+  padding:128px 16px;
 }
 </style>
 <body>
   <!-- Header -->
-  <header class="w3-container w3-blue-gray w3-center" style="padding:128px 16px">
+  <header class="w3-container w3-blue-gray w3-center bigTitle">
     <h1 class="w3-margin w3-jumbo">Deep learning</h1>
   </header>
 
-  <!--  présentation de l'apprentissage profond, leurs domaines d'application -->
+  <!--  présentation de l'apprentissage profond -->
   <div class="w3-row-padding w3-light-grey w3-padding-64 w3-container">
     <div class="w3-content">
       <h1>Qu'est ce que le deep learning ?</h1>
-      <p class="w3-text-black">
-        Nous allons définir trois principaux termes utiles, rapidement mais précisement:
-        <li>L'intelligence artificielle, un domaine dont le but est de reproduire l'intelligence humaine.
-            C'est à dire la capacité à raisonner, apprendre ou encore à collecter des informations.</li>
-        <br><li>Le machine learning ou apprentissage automatisé, une branche de l'intelligence artificielle 
-            dans laquelle on développe et utilise des algorithmes intelligents.<br>
-            Le but de ces algorithmes est qu'ils puissent, seuls faire des prédictions ou des décisions.</li>
-        <br><li>Enfin, le deep learning ou apprentissage profond est une branche du machine learning dans laquelle
-            on travaille avec des réseaux neuronaux artificiels et c'est ce qui nous intéresse.</li>
-      </p>
+      Nous allons tout d'abord définir les trois principaux termes:
+      <ul class="w3-threequarter">
+        <li><b>L'intelligence artificielle</b>, un domaine dont le but est de reproduire l'intelligence humaine.
+          C'est à dire la capacité à raisonner, apprendre ou encore à collecter des informations.</li>
+        <li><b>Le machine learning</b> ou apprentissage automatisé, une branche de l'intelligence artificielle 
+          dans laquelle on développe et utilise des algorithmes intelligents.
+          Le but de ces algorithmes est qu'ils puissent, seuls faire des prédictions ou des décisions.</li>
+        <li>Enfin, le <b>deep learning</b> ou apprentissage profond est une branche du machine learning dans laquelle
+          on travaille avec des réseaux neuronaux artificiels pour reproduire cette intelligence.</li>
+      </ul>
     </div>
   </div>
   <!-- réseau neuronal explication -->
   <div class="w3-row-padding w3-padding-64 w3-container">
     <div class="w3-content">
       <h1>Le réseau neuronal artificiel</h1>
-      <p class="w3-text-black">
-        Les réseaux neuronaux sont du deep learning
-        Un réseau neuronal artificiel est une inspiration mathématique simplifiée du réseau neuronal humain, lui beaucoup plus complexe.
-        <br>Dans notre cas ces réseaux artificiels seront des programmes informatiques. Leur but premier est d'apprendre. 
-        <br>Puis grâce à cet apprentissage, ils pourront effectuer la tâche initiale qui par exemple sera de reconnaitre une image ou une musique.
-        <br>Ci-dessous, un schéma d'un réseau neuronal simple. 
-        <br><img src="reseauSimple.png">
+      <p class="w3-threequarter">
+        Les réseaux neuronaux artificiels ou <b>convolutionnal neural network (CNN)</b> sont le coeur du deep learning.
+        C'est grâce à eux que l'ont peut faire de la reconnaissance d'image, de la conduite autonome ou encore de la détection de maladies chez un patient.
+        <br>Un réseau neuronal artificiel est une inspiration mathématique simplifiée du réseau neuronal humain, lui beaucoup plus complexe.
+        Ci-dessous, un schéma d'un réseau neuronal artificiel simple. 
+        <br><img src="./img/reseauSimple.png">
+        <br>Un réseau artificiel est constituée de trois parties:
+        <ul class="w3-threequarter">
+          <li><b>Input layer</b> ou couche d'entrée (en vert), ce sont les premiers neurones qui recevront les données à traiter et les transmetteront.</li>
+          <li><b>Hidden layers</b> ou couches cachées (en bleu), partie dans laquelle les neurones vont produire un résultat. 
+            Le nombres de couches de cette partie varie et plus il augmente, plus notre réseau se complexifie et peut ainsi entreprendre des tâches plus compliquées.
+            C'est pour cette caractéristique que l'on parle de <b>DEEP</b> learning.</li>
+          <li><b>Output layer</b> ou couche de sortie (en jaune), le(s) neurone(s) de cette couche produisent le résultat final.</li>
+        </ul>
+      </p>
+      <p class="w3-threequarter">
+        La raison de cette inspiration est de reproduire la capacité à apprendre présente chez l'Humain.
+        Oui mais comment? Prenons pour exemple un réseau de neurones créé pour l'occasion.
+        <br>Celui-ci est vierge de toute information pour le moment. Nous allons maintenant effectuer un apprentissage supervisé.
+        C'est à dire que nous allons lui fournir beaucoup d'images, plusieurs milliers, chacune classée (pour exemple, une image de chat sera annotée "chat"). 
+        <br>Par la suite, notre réseau va reprendre les images fournies et tenter de les classer puis vérifier avec les exemples qui lui ont été donné.
+        Une fois que notre réseau a finis cette phase entraînement, nous allons lui faire passer des tests.
+        <br>Cette phase de test est simple, on passe à notre réseau une ou plusieurs images non annotées et s'il les classe correctement, nous pourrons dire qu'il a appris.
+        Si notre réseau a appris durant son entraînement nous pourrons nous en servir ou alors tenter de l'améliorer avec plus d'images.
       </p>
     </div>
   </div>
