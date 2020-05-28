@@ -74,9 +74,16 @@
             Ce tutoriel fonctionnera sous ubuntu avec la librairie PyTorch.</p>
           <!-- dépendances -->
           <h3>Installation des dépendances</h3>
-          <pre><p class="code">pip install torchvision</p></pre>
+          <pre>
+            <p class="code">
+              pip install torchvision
+              pip install numpy
+              pip install matplotlib
+            </p>
+          </pre>
 
           <!-- jeu de données -->
+          <h3>Jeu de données</h3>
           Ensuite, on récupère un grand jeu de données (CIFAR10) pour entraîner notre réseau, grâce à la librairie torchvision.
           Ce jeu de données comporte 60 000 images de 10 classes différentes d'animaux et véhicules.
           <pre>
@@ -87,18 +94,20 @@
             </p> 
           </pre>
           <!-- normalisation des données -->
-          On normalise les images que l'on a récupéré:
+          On normalise les images de notre jeu de données que l'on a récupéré:
           <pre>
             <p class="code">
               transform = transforms.Compose(
                 [transforms.ToTensor(),
                  transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))])
             
+            <span class="comment">#Données pour l'entraînement</span>
             trainset = torchvision.datasets.CIFAR10(root='./data', train=True,
                                                     download=True, transform=transform)
             trainloader = torch.utils.data.DataLoader(trainset, batch_size=4,
                                                       shuffle=True, num_workers=2)
             
+            <span class="comment">#Données pour tester notre réseau</span>
             testset = torchvision.datasets.CIFAR10(root='./data', train=False,
                                                    download=True, transform=transform)
             testloader = torch.utils.data.DataLoader(testset, batch_size=4,
@@ -179,7 +188,7 @@
                         <span class="comment">#Optimise notre réseau</span>
                         optimizer.step()
                 
-                        <span class="comment">#Statistiques sur le deroulement de l'entrainement</span>
+                        <span class="comment">#Statistiques sur le deroulement de l'entraînement</span>
                         running_loss += loss.item()
                         if i % 2000 == 1999:    
                             print('[%d, %5d] loss: %.3f' %
@@ -195,16 +204,42 @@
           Jusqu'à présent nous avons construit un réseau entraîné que l'on va pouvoir sauvegarder en tant que modèle.
           Ce modèle comporte la structure du réseau neuronal artificiel, ainsi que ses paramètres.<br>
           Or par sourcis de flexibilité, il est préférable de sauvegarder seulement les paramètres et de recréer un réseau neuronal avec la même structure.
-          
-            <pre>
-              <p class="code">
-                <span class="comment">#Conseillé, sauvegarde des paramètres du modèle</span>
-                PATH = 'model.pth'
-                torch.save(net.state_dict(), PATH)
-                <span class="comment">#Déconseillé, sauvegarde du modèle complet</span>
-                PATH = 'fullModel.pth'
-                torch.save(the_model, PATH)
-              </p>
+          <pre>
+            <p class="code">
+              <span class="comment">#Conseillé, sauvegarde des paramètres du modèle</span>
+              PATH = 'model.pth'
+              torch.save(net.state_dict(), PATH)
+              <span class="comment">#Déconseillé, sauvegarde du modèle complet</span>
+              PATH = 'fullModel.pth'
+              torch.save(the_model, PATH)
+            </p>
+          </pre>
+
+          <!-- premier test -->
+          <h3>Tester le réseau</h3>
+          Maintenant nous allons procéder à un premier test pour évaluer si notre réseau a pu apprendre.
+          <pre>
+            <p class="code">
+              import matplotlib.pyplot as plt
+              import numpy as np
+              
+              <span class="comment">#Permet d'afficher une image</span>
+              def imshow(img):
+                  img = img / 2 + 0.5 
+                  npimg = img.numpy()
+                  plt.imshow(np.transpose(npimg, (1, 2, 0)))
+                  plt.show()
+
+              <span class="comment">#Images de test</span>
+              dataiter = iter(testloader)
+              images, labels = dataiter.next()
+
+              <span class="comment">#Affiche les images à deviner, 
+                fermez la fenetre pour voir les prédictions</span>
+              imshow(torchvision.utils.make_grid(images))
+              <span class="comment">#Prédiction de notre réseau sur les précédentes images </span>
+              print('GroundTruth: ', ' '.join('%5s' % classes[labels[j]] for j in range(4)))
+            </p>
           </pre>
         </div>
       </div>
