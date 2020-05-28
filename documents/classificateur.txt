@@ -1,9 +1,0 @@
-Etapes de création d'un classificateur d'images:
-
-1. Récupération d'un panel d'images dans notre cas, CIFAR10
-2. On normalise ce panel
-3. Création d'un réseau neuronal profond
-4. Création d'un journal mesurant la perfomance de notre classificateur ainsi que d'un optimisateur(SGD) pour améliorer ses performances
-5. Entrainement du réseau neuronal
-6. Test du réseau neuronal
-
