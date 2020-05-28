@@ -1,0 +1,19 @@
+body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
+.w3-bar,h1,button {font-family: "Montserrat", sans-serif}
+body {font-size: 20px;}
+img {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+.bigTitle {
+  padding:128px 16px;
+}
+.code {
+  background-color: rgb(196, 193, 193);
+  border-radius: 5px;
+  font-family: "Lato", sans-serif
+}
+
+.comment {
+    color:rgb(73, 136, 73);
+}
