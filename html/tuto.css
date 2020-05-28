@@ -11,9 +11,23 @@ img {
 .code {
   background-color: rgb(196, 193, 193);
   border-radius: 5px;
-  font-family: "Lato", sans-serif
+  font-family: "Lato", sans-serif;
+  padding: 1px;
+  margin: 1px;
+}
+
+.output {
+  background-color: rgb(112, 138, 151);
+  border-radius: 5px;
+  font-family: "Lato", sans-serif;
+  font-size: 17px;
 }
 
 .comment {
     color:rgb(73, 136, 73);
+}
+
+.titleOutput {
+  font-family: "Lato", sans-serif;
+  float: left;
 }

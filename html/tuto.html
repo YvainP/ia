@@ -71,7 +71,8 @@
         <div class="w3-threequarter">
           <h1>Créer sa propre reconnaissance d'image</h1>
           <p>Nous allons maintenant pouvoir programmer notre propre reconnaissance d'image comme application du deep learning.
-            Ce tutoriel fonctionnera sous ubuntu avec la librairie PyTorch.</p>
+            Ce tutoriel fonctionnera sous ubuntu avec la librairie PyTorch avec le language informatique Python.
+          </p>
           <!-- dépendances -->
           <h3>Installation des dépendances</h3>
           <pre>
@@ -84,7 +85,7 @@
 
           <!-- jeu de données -->
           <h3>Jeu de données</h3>
-          Ensuite, on récupère un grand jeu de données (CIFAR10) pour entraîner notre réseau, grâce à la librairie torchvision.
+          Dans un fichier training.py, on récupère un grand jeu de données (CIFAR10) pour entraîner notre réseau.
           Ce jeu de données comporte 60 000 images de 10 classes différentes d'animaux et véhicules.
           <pre>
             <p class="code">
@@ -119,7 +120,15 @@
             classes = ('plane', 'car', 'bird', 'cat',
                        'deer', 'dog', 'frog', 'horse', 'ship', 'truck')
             </p>
+          <span class="titleOutput">A l'execution:</span>
+            <p class="output">
+              Downloading https://www.cs.toronto.edu/~kriz/cifar-10-python.tar.gz 
+                  to ./data/cifar-10-python.tar.gz
+              100.0%Extracting ./data/cifar-10-python.tar.gz to ./data
+              Files already downloaded and verified
+            </p>
           </pre>
+
           <!-- Création d'un cnn -->
           <h3>Création d'un réseau neuronal artificiel</h3>
           Créeons maintenant un réseau neuronal avec la librairie torch.
@@ -153,6 +162,7 @@
                 net = Net()
             </p>
           </pre>
+
           <!-- évaluation du réseau -->
           <h3>Evaluation du réseau neuronal</h3>
           Nous allons maintenant définir une fonction qui va évaluer les performances de notre réseau neuronal.<br>
@@ -167,6 +177,7 @@
               optimizer = optim.SGD(net.parameters(), lr=0.001, momentum=0.9)
             </p>
           </pre>
+
           <!-- Entraînement -->
           <h3>Entraînement</h3>
           Une fois notre réseau opérationnel, nous allons pouvoir l'entraîner sur nos données.
@@ -198,6 +209,22 @@
                             running_loss = 0.0
                 
                 print('Entrainement terminé!')
+              </p>
+              <span class="titleOutput">A l'execution:</span>
+              <p class="output">
+                [1,  2000] loss: 2.167
+                [1,  4000] loss: 1.827
+                [1,  6000] loss: 1.645
+                [1,  8000] loss: 1.574
+                [1, 10000] loss: 1.497
+                [1, 12000] loss: 1.449
+                [2,  2000] loss: 1.400
+                [2,  4000] loss: 1.350
+                [2,  6000] loss: 1.329
+                [2,  8000] loss: 1.296
+                [2, 10000] loss: 1.284
+                [2, 12000] loss: 1.285
+                Entrainement terminé!
               </p>
           </pre>
 
@@ -240,7 +267,12 @@
                 fermez la fenetre pour voir les prédictions</span>
               imshow(torchvision.utils.make_grid(images))
               <span class="comment">#Prédiction de notre réseau sur les précédentes images </span>
-              print('GroundTruth: ', ' '.join('%5s' % classes[labels[j]] for j in range(4)))
+              print('Prédictions: ', ' '.join('%5s' % classes[labels[j]] for j in range(4)))
+            </p>
+            <span class="titleOutput">A l'execution:</span>
+            <p class="output">
+              <img src="https://pytorch.org/tutorials/_images/sphx_glr_cifar10_tutorial_002.png" width="600px" height="300px">
+              Prédictions:    cat  ship  ship plane
             </p>
           </pre>
         </div>
