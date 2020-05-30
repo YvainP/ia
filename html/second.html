@@ -19,6 +19,7 @@
     <!-- et après? -->
     <div class="w3-row-padding w3-light-grey w3-padding-64 w3-container">
         <div class="w3-content">
+            <a href="tuto.html">Retour</a>
             <h1>Et après?</h1>
             <div class="w3-threequarter">
                 <!-- précision du réseau -->
@@ -57,29 +58,10 @@
                 Dans un second fichier test.py
                 <pre>
                     <p class="code">
-                        <span class="comment">#On recharge notre modèle</span>
-                        net = Net()
-                        net.load_state_dict(torch.load(PATH))
-
-                        <span class="comment">#Précision sur le panel complet d'images</span>
-                        correct = 0
-                        total = 0
-                        with torch.no_grad():
-                            for data in testloader:
-                                images, labels = data
-                                outputs = net(images)
-                                _, predicted = torch.max(outputs.data, 1)
-                                <span class="comment">#Nombre total d'images</span>
-                                total += labels.size(0)
-                                <span class="comment">#Prédictions correctes</span>
-                                correct += (predicted == labels).sum().item()
-
-                        print('Précision sur 60000 images: %d %%' % (
-                            100 * correct / total))
                     </p>
                     <span class="titleOutput">A l'execution:</span>
                     <p class="output">
-                        Précision sur 60000 images: 54%
+                        P
                     </p>
                 </pre>
             </div>
