@@ -1,71 +1,65 @@
 <!DOCTYPE html>
 <html lang="fr">
-<title>tuto</title>
-<header>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet" type="text/css" href="tuto.css">
-</header>
-<body>
-    <!-- Header -->
-    <header class="w3-container w3-blue-gray w3-center bigTitle">
-    <h1 class="w3-margin w3-jumbo">Deep learning</h1>
+    <title>tuto</title>
+    <header>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../css/tuto.css">
     </header>
+    <body>
+        <!-- et après? -->
+        <div class="w3-row-padding w3-light-grey w3-padding-64 w3-container">
+            <div class="w3-content">
+                <h1>Et après?</h1>
+                <div class="w3-threequarter">
+                    <!-- précision du réseau -->
+                    <h3>Précision du réseau neuronal</h3>
+                    Nous pouvons calculer la précision de notre réseau neuronal artificiel sur tout le panel d'images.
+                    <pre>
+                        <p class="code">
+                            <span class="comment">#On recharge notre modèle</span>
+                            net = Net()
+                            net.load_state_dict(torch.load(PATH))
 
-    <!-- et après? -->
-    <div class="w3-row-padding w3-light-grey w3-padding-64 w3-container">
-        <div class="w3-content">
-            <a href="tuto.html">Retour</a>
-            <h1>Et après?</h1>
-            <div class="w3-threequarter">
-                <!-- précision du réseau -->
-                <h3>Précision du réseau neuronal</h3>
-                Nous pouvons calculer la précision de notre réseau neuronal artificiel sur tout le panel d'images.
-                <pre>
-                    <p class="code">
-                        <span class="comment">#On recharge notre modèle</span>
-                        net = Net()
-                        net.load_state_dict(torch.load(PATH))
+                            <span class="comment">#Précision sur le panel complet d'images</span>
+                            correct = 0
+                            total = 0
+                            with torch.no_grad():
+                                for data in testloader:
+                                    images, labels = data
+                                    outputs = net(images)
+                                    _, predicted = torch.max(outputs.data, 1)
+                                    <span class="comment">#Nombre total d'images</span>
+                                    total += labels.size(0)
+                                    <span class="comment">#Prédictions correctes</span>
+                                    correct += (predicted == labels).sum().item()
 
-                        <span class="comment">#Précision sur le panel complet d'images</span>
-                        correct = 0
-                        total = 0
-                        with torch.no_grad():
-                            for data in testloader:
-                                images, labels = data
-                                outputs = net(images)
-                                _, predicted = torch.max(outputs.data, 1)
-                                <span class="comment">#Nombre total d'images</span>
-                                total += labels.size(0)
-                                <span class="comment">#Prédictions correctes</span>
-                                correct += (predicted == labels).sum().item()
-
-                        print('Précision sur 60000 images: %d %%' % (
-                            100 * correct / total))
-                    </p>
-                    <span class="titleOutput">A l'execution:</span>
-                    <p class="output">
-                        Précision sur 60000 images: 54%
-                    </p>
-                </pre>
-                <!-- utilisation du modèle -->
-                <h3>Utilisation de notre modèle</h3>
-                Arrivé à cette étape, nous disposons d'un modèle suffisamment eprformant pour pouvoir l'utiliser sur d'autres exemple.
-                Dans un second fichier test.py
-                <pre>
-                    <p class="code">
-                    </p>
-                    <span class="titleOutput">A l'execution:</span>
-                    <p class="output">
-                        P
-                    </p>
-                </pre>
+                            print('Précision sur 60000 images: %d %%' % (
+                                100 * correct / total))
+                        </p>
+                        <span class="titleOutput">A l'execution:</span>
+                        <p class="output">
+                            Précision sur 60000 images: 54%
+                        </p>
+                    </pre>
+                    <!-- utilisation du modèle -->
+                    <h3>Utilisation de notre modèle</h3>
+                    Arrivé à cette étape, nous disposons d'un modèle suffisamment eprformant pour pouvoir l'utiliser sur d'autres exemple.
+                    Dans un second fichier test.py
+                    <pre>
+                        <p class="code">
+                        </p>
+                        <span class="titleOutput">A l'execution:</span>
+                        <p class="output">
+                            P
+                        </p>
+                    </pre>
+                </div>
             </div>
         </div>
-    </div>
-</body>
+    </body>
 </html>
