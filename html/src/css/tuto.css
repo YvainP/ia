@@ -5,6 +5,8 @@ header{
   display: flex;
   flex-flow: row wrap;
   justify-content: space-between;
+  background:url("../img/binary-bg.png");
+  background-blend-mode: color-burn;
 }
 #mainTitle{
   flex:1;
@@ -40,11 +42,9 @@ img {
   float: left;
 }
 /*----------------  Tabs -----------------*/
-/*body {*/
-/*  background:url("../img/binary-bg.png");*/
-/*}*/
 
 .iframetab {
+  /*class created with js*/
   width:100%;
   height:auto;
   border:0px;
@@ -54,25 +54,6 @@ img {
   top:-22px;
 }
 
-.ui-tabs-panel {
-  padding:5px !important;
-}
-
-.openout {
-  float:right;
-  position:relative;
-  top:-28px;
-  left:-5px;
-}
-/**************/
-.tabConWrap {
-  width:98%;
-  position:relative;
-  padding-top:28px;
-  margin:10px auto 30px;
-  border-bottom:4px solid #39f;
-  text-align:left;
-}
 #tabs {
   width:auto;
   height:25px;

@@ -19,7 +19,6 @@ $(document).ready(function() {
     function loadTabFrame(tab, url) {
         if ($(tab).find("iframe").length == 0) {
             var html = [];
-            html.push('<div class="tabIframeWrapper">');
             html.push('<div class="openout"><a href="' + url + '"></a></div><iframe class="iframetab" src="' + url + '">Load Failed?</iframe>');
             html.push('</div>');
             $(tab).append(html.join(""));
