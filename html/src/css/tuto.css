@@ -44,7 +44,6 @@ img {
 /*----------------  Tabs -----------------*/
 
 .iframetab {
-  /*class created with js*/
   width:100%;
   height:auto;
   border:0px;
@@ -55,27 +54,28 @@ img {
 }
 
 #tabs {
-  width:auto;
   height:25px;
-  margin:0px 0px;
-  padding:0px 0px;
+  margin:0;
+  padding:0;
 }
 #tabs li {
   margin:0px 2px 0px 0px;
-  padding:0px 0px;
+  padding:0;
   display:inline;
-  font:bold 12px Arial,Sans-Serif;
+  font:bold 18px Arial,Sans-Serif;
 }
 #tabs li a {
-  background-color:#39f;
+  background-color:rgb(155, 187, 219);
   color:white;
-  padding:7px 10px;
+  padding:15px 15px;
+  margin-bottom: 20px;
   text-decoration:none;
   border:1px solid #ccc;
   border-bottom:none;
   -webkit-border-radius:5px 5px 0px 0px;
   -moz-border-radius:5px 5px 0px 0px;
   border-radius:5px 5px 0px 0px;
+
 }
 #tabs li a:hover{
   background-color: #607d8b;
