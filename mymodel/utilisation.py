@@ -3,18 +3,18 @@ import torch.nn as nn
 import torch.nn.functional as F
 import numpy
 import torchvision.transforms as transforms
+from PIL import Image
 
-from torchvision import datasets, models, transforms
-import matplotlib.image as mpimg
-import matplotlib.pyplot as plt
+transform = transforms.Compose([            
+    transforms.Resize(32),                   
+    transforms.CenterCrop(32),              
+    transforms.ToTensor(),                 
+    transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))])
 
+img = Image.open("cat.jpg")
+transformedImg = transform(img)
+resizedImg = torch.unsqueeze(transformedImg, 0)
 
-transform = transforms.Compose([
-        transforms.ToTensor(),
-        transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))
-        ])
-dataset = datasets.ImageFolder('./images', transform=transform)
-dataloader = torch.utils.data.DataLoader(dataset, batch_size=32, shuffle=True)
 classes = ('plane', 'car', 'bird', 'cat',
                    'deer', 'dog', 'frog', 'horse', 'ship', 'truck')
 
@@ -42,7 +42,8 @@ net = Net()
 #Recharge le modèle
 PATH = 'model.pth'
 net.load_state_dict(torch.load(PATH))
-images, labels = next(iter(dataloader))
+outputs = net(resizedImg)
 
-#imshow(torchvision.utils.make_grid(images))
-print('GroundTruth: ', ' '.join('%5s' % classes[labels[j]] for j in range(1)))
+_, predicted = torch.max(outputs, 1)
+print("Prédiction sur l'image".join('%5s' % classes[predicted[j]] for j in range(1)))
+
