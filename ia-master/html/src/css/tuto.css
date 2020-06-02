@@ -1,0 +1,83 @@
+body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
+.w3-bar,h1,button {font-family: "Montserrat", sans-serif}
+body {font-size: 20px;}
+header{
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  background:url("../img/binary-bg.png");
+  background-blend-mode: color-burn;
+}
+#mainTitle{
+  flex:1;
+}
+img {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+.bigTitle {
+  padding:128px 16px;
+}
+.code {
+  background-color: rgb(196, 193, 193);
+  border-radius: 5px;
+  font-family: "Lato", sans-serif;
+  padding: 1px;
+  margin: 1px;
+}
+
+.output {
+  background-color: rgb(112, 138, 151);
+  border-radius: 5px;
+  font-family: "Lato", sans-serif;
+  font-size: 17px;
+}
+
+.comment {
+    color:rgb(73, 136, 73);
+}
+
+.titleOutput {
+  font-family: "Lato", sans-serif;
+  float: left;
+}
+/*----------------  Tabs -----------------*/
+
+.iframetab {
+  width:100%;
+  height:auto;
+  border:0px;
+  margin:0px;
+
+  position:relative;
+  top:-22px;
+}
+
+#tabs {
+  height:25px;
+  margin:0;
+  padding:0;
+}
+#tabs li {
+  margin:0px 2px 0px 0px;
+  padding:0;
+  display:inline;
+  font:bold 18px Arial,Sans-Serif;
+}
+#tabs li a {
+  background-color:rgb(155, 187, 219);
+  color:white;
+  padding:15px 15px;
+  margin-bottom: 20px;
+  text-decoration:none;
+  border:1px solid #ccc;
+  border-bottom:none;
+  -webkit-border-radius:5px 5px 0px 0px;
+  -moz-border-radius:5px 5px 0px 0px;
+  border-radius:5px 5px 0px 0px;
+
+}
+#tabs li a:hover{
+  background-color: #607d8b;
+}
+
