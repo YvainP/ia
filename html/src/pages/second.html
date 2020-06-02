@@ -49,10 +49,12 @@
                     <!-- utilisation du modèle -->
                     <h3>Utilisation de notre modèle</h3>
                     Arrivé à cette étape, nous disposons d'un modèle suffisamment performant pour pouvoir l'utiliser sur d'autres exemple.
-                    Dans un second fichier test.py, nous allons utiliser notre réseau neuronal sur des images que l'on aura prise sur google images.
+                    Dans un second fichier test.py, nous allons utiliser notre réseau neuronal sur des images en dehors du panel utilisé pour s'entraîner.
+                    Libre à vous de choisir une image d'animal sur le web.
 
                     Nous allons tout d'abord importer les librairies utiles, puis recadrer l'image que l'on veut tester.
-                    Le réseau neuronal que nous aovns entraîné auparavant supporte seulement des images 32 pixels sur 32, il faut donc transformer celles que l'ont veut tester avec notre réseau.
+                    Le réseau neuronal que nous avons entraîné auparavant <b>supporte seulement des images 32 pixels sur 32</b>.
+                    Il convient donc de redimensionner au préalable celles que l'ont veut tester avec notre réseau.
                     <pre>
                         <p class="code">
                             import torch
@@ -69,7 +71,7 @@
                                 transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))])
 
                             <span class="comment">#On récupère l'image</span>
-                            img = Image.open("cat.jpg")
+                            img = Image.open("animal1.jpg")
 
                             <span class="comment">#Application du recadrage</span>
                             transformedImg = transform(img)
@@ -77,10 +79,11 @@
                         </p>
                     </pre>
                     
-                    On va ensuite réinstancier le réseau neuronal artificiel utilisé lors de l'entraînement puis faire étudier l'image à notre réseau pour qu'il nous donne sa prédiction.
+                    On va ensuite réinstancier le réseau neuronal artificiel utilisé lors de l'entraînement puis lui faire étudier l'image à notre réseau pour qu'il nous donne sa prédiction.
+                    *rappel: cnn = convolutionnal neural network ou réseau neuronal artificiel profond.
                     <pre>
                         <p class="code">
-                            <span class="comment">#On recrée un cnn en accord avec notre modèle</span>
+                            <span class="comment">#On recrée un cnn* en accord avec notre modèle</span>
                             class Net(nn.Module):
                                 def __init__(self):
                                     super(Net, self).__init__()
@@ -111,7 +114,8 @@
                             
                             <span class="comment">#et affichera sa prédiction</span>
                             _, predicted = torch.max(outputs, 1)
-                            print("Prédiction sur l'image".join('%5s' % classes[predicted[j]] for j in range(1)))
+                            print("Prédiction sur l'image".join('%5s' % classes[predicted[j]] 
+                                                                for j in range(1)))
                         </p>
                     </pre>
                 </div>
