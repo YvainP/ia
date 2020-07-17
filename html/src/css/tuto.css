@@ -26,6 +26,16 @@ img {
   margin: 1px;
 }
 
+.url {
+  text-decoration: none;
+  color: rgb(43, 153, 197)
+}
+
+.url:hover {
+  text-decoration: none;
+  color: rgb(192, 127, 30)
+}
+
 .output {
   background-color: rgb(112, 138, 151);
   border-radius: 5px;
