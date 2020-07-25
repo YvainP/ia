@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <title>tuto</title>
+    <header>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../css/tuto.css">
+    </header>
+    <body>
+        <!-- et après? -->
+        <div class="w3-row-padding w3-light-grey w3-padding-64 w3-container">
+            <div class="w3-content">
+                <h1>Et après?</h1>
+                <div class="w3-threequarter">
+                    <!-- précision du réseau -->
+                    <h3>Précision du réseau neuronal</h3>
+                    Pour avoir un aperçu plus global des performances de notre modèle,<br>
+                    nous pouvons calculer la précision de notre réseau neuronal artificiel sur tout le panel d'images.
+                    <pre>
+                        <p class="code">
+                            <span class="comment">#On recharge notre modèle</span>
+                            net = Net()
+                            net.load_state_dict(torch.load(PATH))
+
+                            <span class="comment">#Précision sur le panel complet d'images</span>
+                            correct = 0
+                            total = 0
+                            with torch.no_grad():
+                                for data in testloader:
+                                    images, labels = data
+                                    outputs = net(images)
+                                    _, predicted = torch.max(outputs.data, 1)
+                                    <span class="comment">#Nombre total d'images</span>
+                                    total += labels.size(0)
+                                    <span class="comment">#Prédictions correctes</span>
+                                    correct += (predicted == labels).sum().item()
+
+                            print('Précision sur 60000 images: %d %%' % (
+                                100 * correct / total))
+                        </p>
+                        <span class="titleOutput">A l'execution:</span>
+                        <p class="output">
+                            Précision sur 60000 images: 54%
+                        </p>
+                    </pre>
+                    <!-- utilisation du modèle -->
+                    <h3>Utilisation de notre modèle</h3>
+                    Arrivé à cette étape, nous disposons d'un modèle suffisamment performant pour pouvoir l'utiliser sur d'autres exemple, autres que le panel d'image d'entraînement.
+                    Dans un second fichier test.py, nous allons utiliser notre réseau neuronal sur des images trouvées à part donc.
+                    Libre à vous de choisir l'image sur le web que vous voulez tester.<br> <br>
+
+                    Nous allons tout d'abord importer les librairies utiles, puis recadrer l'image que l'on veut tester.
+                    Le réseau neuronal que nous avons entraîné auparavant <b>supporte seulement des images 32 pixels sur 32</b>.
+                    Il convient donc de redimensionner au préalable celles que l'ont veut tester avec notre réseau.
+                    <pre>
+                        <p class="code">
+                            import torch
+                            import torch.nn as nn
+                            import torch.nn.functional as F
+                            import torchvision.transforms as transforms
+                            from PIL import Image
+
+                            <span class="comment">#Définition du recadrage de notre image en 32x32 pixels</span>
+                            transform = transforms.Compose([            
+                                transforms.Resize(32),                   
+                                transforms.CenterCrop(32),              
+                                transforms.ToTensor(),                 
+                                transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))])
+
+                            <span class="comment">#On récupère l'image stockée localement</span>
+                            img = Image.open("animal1.jpg")
+
+                            <span class="comment">#Application du recadrage</span>
+                            transformedImg = transform(img)
+                            resizedImg = torch.unsqueeze(transformedImg, 0)
+                        </p>
+                    </pre>
+                    
+                    On va ensuite réinstancier le réseau neuronal artificiel utilisé lors de l'entraînement puis lui faire étudier l'image à notre réseau pour qu'il nous donne sa prédiction.
+                    *rappel: cnn = convolutionnal neural network ou réseau neuronal artificiel profond.
+                    <pre>
+                        <p class="code">
+                            <span class="comment">#On recrée un cnn* en accord avec notre modèle</span>
+                            class Net(nn.Module):
+                                def __init__(self):
+                                    super(Net, self).__init__()
+                                    self.conv1 = nn.Conv2d(3, 6, 5)
+                                    self.pool = nn.MaxPool2d(2, 2)
+                                    self.conv2 = nn.Conv2d(6, 16, 5)
+                                    self.fc1 = nn.Linear(16 * 5 * 5, 120)
+                                    self.fc2 = nn.Linear(120, 84)
+                                    self.fc3 = nn.Linear(84, 10)
+                            
+                                def forward(self, x):
+                                    x = self.pool(F.relu(self.conv1(x)))
+                                    x = self.pool(F.relu(self.conv2(x)))
+                                    x = x.view(-1, 16 * 5 * 5)
+                                    x = F.relu(self.fc1(x))
+                                    x = F.relu(self.fc2(x))
+                                    x = self.fc3(x)
+                                    return x
+                            
+                            net = Net()
+                            
+                            <span class="comment">#Recharge le modèle</span>
+                            PATH = 'model.pth'
+                            net.load_state_dict(torch.load(PATH))
+                            
+                            <span class="comment">#notre cnn va étudier l'image</span>
+                            outputs = net(resizedImg)
+                            
+                            <span class="comment">#et affichera sa prédiction</span>
+                            _, predicted = torch.max(outputs, 1)
+                            print("Prédiction sur l'image".join('%5s' % classes[predicted[j]] 
+                                                                for j in range(1)))
+                        </p>
+                        <span class="titleOutput">A l'execution:</span>
+                        <p class="output">
+                            Prédiction sur l'image: Dog
+                        </p>
+                    </pre>
+                    <p>
+                        A ce stade, vous avez désormais une reconnaissance d'image basique que vous pourrez utiliser sur une image ou alors une liste d'image en les parcourant avec le code ci-dessus.
+                        
+                    </p>
+                    <h3>Pour approfondir le sujet</h3>
+                    Quelques liens utiles:<br>
+                    <a class="url" href="https://pytorch.org/tutorials/beginner/blitz/cifar10_tutorial.html" target="_blank">Le tutoriel Pytorch avec lequel nous avons pu faire celui-ci</a><br>
+                    
+                    <a class="url" href="https://pytorch.org/tutorials/index.html" target="_blank">Les différents tutoriels de Pytorch sur les réseaux neuronaux</a><br>
+                    
+                    <a class="url"href="https://www.tensorflow.org/tutorials/images/classification" target="_blank">Le tutoriel de TensorFlow pour programmer une reconnaissance d'image</a>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
